@@ -1,0 +1,22 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+
+.CODE
+    MAIN PROC
+    ;IMPLEMENTING LOGIC GROUP OF INSTRUCTIONS
+        MOV AX, 8A53H;
+        MOV BX, 0200H;
+        MOV CX, 692DH;
+        MOV DX, 0E6CBH;
+        MOV WORD PTR[BX], 7B8AH;
+        AND AX, BX;
+        AND CX, WORD PTR[BX];
+        OR WORD PTR[BX], CX;
+        OR WORD PTR[BX], 6F0CH;
+        XOR AX, 94D7H;
+        XOR DX, 0C4D1H;
+        MOV AH, 4CH;
+        INT 21H;
+    MAIN ENDP
+END MAIN

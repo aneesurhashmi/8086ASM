@@ -1,0 +1,24 @@
+EXTERN CONVERT:NEAR
+.MODEL SMALL
+.STACK 100h
+.DATA
+    MSG DB "ENTER A LOWER CASE LETTER: $"
+
+.CODE
+    MAIN PROC
+        MOV AX, @DATA;
+        MOV DS,AX;
+        
+        LEA DX, MSG;
+        MOV AH, 09; DISPLAY STRING 
+        INT 21H;
+
+        MOV AH, 01H; STRING STRING INPUT STORED IN AL
+        INT 21H;
+
+        CALL CONVERT
+        MOV AH, 4CH; EXIT DOS
+        INT 21H;
+
+    MAIN ENDP
+END MAIN

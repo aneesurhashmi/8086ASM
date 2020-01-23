@@ -1,0 +1,28 @@
+PUBLIC ADDP
+.MODEL SMALL
+.STACK 100H
+.DATA
+    ANS DB 0DH, 0AH, "?"
+    MSG3 DB 0DH, 0AH, "ANSWER: $"
+
+.CODE 
+    ADDP PROC NEAR
+        ADD AL, BL; AL AND BL HAVE FIRST AND SECOND 
+
+
+        SUB AL, 30H; CONVERT STR TO NUM ASCII
+
+        MOV ANS, AL; 
+
+        MOV AH, 09H; DISPLAY MSG
+        LEA DX, MSG3;
+        INT 21H;
+
+        MOV AH, 02H;
+        MOV DL, ANS;
+        INT 21H;
+
+        RET
+
+    ADDP ENDP
+END 

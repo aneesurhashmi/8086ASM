@@ -1,0 +1,33 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+    CR EQU 0DH
+    LF EQU 0AH
+    MSG1 DB "ENTER A LOWER CASE LETTER... $"
+    MSG2 DB CR, LF, "IN UPPER CASE IT IS:  "
+    CHAR DB ?,"$"
+.CODE
+    MAIN PROC
+        MOV AX, @DATA;
+        MOV DS, AX;
+
+        LEA DX, MSG1; DISPLAY FIRST MESSAGE
+        MOV AH, 09H;
+        INT 21H;
+
+        MOV AH, 01H; INPUT CHAR STORED IN AL
+        INT 21H;
+
+        SUB AL , 20H; CONVERT TO LOWER CASE
+        MOV CHAR, AL;
+
+        LEA DX, MSG2;
+        MOV AH, 09H;
+        INT 21H;
+
+        MOV AH, 4CH;
+        INT 21H;
+
+
+    MAIN ENDP
+END MAIN
